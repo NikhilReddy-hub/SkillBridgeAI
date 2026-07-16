@@ -441,8 +441,59 @@ Be encouraging, specific, and actionable. Format responses clearly with markdown
     const lowercaseMsg = message.toLowerCase();
     if (lowercaseMsg.includes('ready') || lowercaseMsg.includes('interview')) {
       aiResponse = `Based on your profile target **${user.targetCareer || 'Developer'}**, your readiness index sits at **${user.careerReadinessScore}%**. \n\nTo raise your readiness rating:\n1. Solve prerequisites graph dependencies on SkillBridge.\n2. Complete your week milestones on the target roadmap.\n3. Quantify project contributions on your uploaded resume file.`;
-    } else if (lowercaseMsg.includes('project')) {
-      aiResponse = `Here are three great projects to build for a **${user.targetCareer || 'Software Engineer'}** profile:\n\n- **Containerized REST microservice** (NodeJS + Express + Docker + TypeScript)\n- **Secure user token authentication module** (JWT + HTTPOnly Cookie controls)\n- **Graph dependency visuals tracker** (React + Framer Motion representation)`;
+    } else if (lowercaseMsg.includes('project') && !lowercaseMsg.includes('tracker') && !lowercaseMsg.includes('graph')) {
+      aiResponse = `Here are three great projects to build for a **${user.targetCareer || 'Software Engineer'}** profile:\n\n- **Containerized REST microservice** (NodeJS + Express + Docker + TypeScript)\n- **Secure user token authentication module** (JWT + HTTPOnly Cookie controls)\n- **Graph dependency visuals tracker** (React + Framer Motion representation)\n\nWhich one would you like to build? I can provide the implementation steps!`;
+    } else if (lowercaseMsg.includes('tracker') || lowercaseMsg.includes('graph') || lowercaseMsg.includes('visual')) {
+      aiResponse = `To build the **Graph Dependency Visual Tracker**, you can follow these steps:
+\n1. **Data Structure:** Implement a Directed Graph (Adjacency List) in your code to represent skill relations (e.g. JavaScript points to React).
+\n2. **Path Traversal:** Use a Topological Sort (using DFS) or BFS traversal to determine the exact order a student should learn the skills.
+\n3. **Frontend Visuals:** Use a library like \`reactflow\` or raw SVG paths. Render skills as circular nodes and dependency paths as SVG curved lines connecting them.
+\n4. **Interactivity:** Use Framer Motion or Tailwind transitions to animate paths turning green when a prerequisite skill is marked as complete.
+\nWould you like a sample React component structure for this?`;
+    } else if (lowercaseMsg.includes('docker') || lowercaseMsg.includes('container')) {
+      aiResponse = `Here is how you can set up Docker containerization for your application:
+\n1. **Backend Dockerfile:** Create a \`Dockerfile\` in your backend directory:
+\`\`\`dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install --production
+COPY . .
+EXPOSE 5000
+CMD ["node", "server.js"]
+\`\`\`
+\n2. **Docker Compose:** Create a \`docker-compose.yml\` in the root to run MongoDB, Frontend, and Backend services simultaneously:
+\`\`\`yaml
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+\`\`\`
+\nWould you like me to draft the Frontend Nginx configuration next?`;
+    } else if (lowercaseMsg.includes('typescript') || lowercaseMsg.includes('ts')) {
+      aiResponse = `To migrate your codebase to **TypeScript**, follow this checklist:
+\n1. **Install TS Dependencies:** Run \`npm i -D typescript @types/react @types/react-dom @types/node @types/express\`
+\n2. **Configuration:** Generate a config file using \`npx tsc --init\` and set:
+   - \`"target": "ES2022"\`
+   - \`"jsx": "react-jsx"\` (for React codebases)
+\n3. **Type Declarations:** Create interfaces for your main data objects (e.g., \`interface ISkill { name: string; level: number; }\`) and update file extensions to \`.ts\` and \`.tsx\`.
+\nWould you like a template config for your tsconfig.json?`;
+    } else if (lowercaseMsg.includes('aws') || lowercaseMsg.includes('cloud') || lowercaseMsg.includes('deploy')) {
+      aiResponse = `Here are the steps to deploy your application on **AWS EC2**:
+\n1. **Launch EC2 Instance:** Spin up an Ubuntu Server 22.04 LTS instance (t2.micro works for free tier).
+\n2. **Configure Security Group:** Open ports 22 (SSH), 80 (HTTP), and 443 (HTTPS).
+\n3. **Install Docker:** Run \`sudo apt update && sudo apt install docker.io docker-compose -y\`
+\n4. **Deploy Containers:** Clone your repo, create your production \`.env\` file, and spin up containers using \`docker compose up -d\`.
+\n5. **Reverse Proxy:** Install Nginx and configure it to proxy port 80 traffic to your application port (e.g. 5173/5000).
+\nWould you like the Nginx server block config sample?`;
     } else if (lowercaseMsg.includes('cert')) {
       aiResponse = `Valuable industry certifications for a **${user.targetCareer || 'Software Engineer'}** target:\n\n1. **AWS Cloud Practitioner Essentials** (Amazon web services)\n2. **MongoDB Certified Associate Developer** (Database mapping)\n3. **HashiCorp Certified Terraform Associate** (Infrastructure automation)`;
     } else {
@@ -461,8 +512,59 @@ Be encouraging, specific, and actionable. Format responses clearly with markdown
       const lowercaseMsg = message.toLowerCase();
       if (lowercaseMsg.includes('ready') || lowercaseMsg.includes('interview')) {
         aiResponse = `Based on your profile target **${user.targetCareer || 'Developer'}**, your readiness index sits at **${user.careerReadinessScore}%**. \n\nTo raise your readiness rating:\n1. Solve prerequisites graph dependencies on SkillBridge.\n2. Complete your week milestones on the target roadmap.\n3. Quantify project contributions on your uploaded resume file.`;
-      } else if (lowercaseMsg.includes('project')) {
-        aiResponse = `Here are three great projects to build for a **${user.targetCareer || 'Software Engineer'}** profile:\n\n- **Containerized REST microservice** (NodeJS + Express + Docker + TypeScript)\n- **Secure user token authentication module** (JWT + HTTPOnly Cookie controls)\n- **Graph dependency visuals tracker** (React + Framer Motion representation)`;
+      } else if (lowercaseMsg.includes('project') && !lowercaseMsg.includes('tracker') && !lowercaseMsg.includes('graph')) {
+        aiResponse = `Here are three great projects to build for a **${user.targetCareer || 'Software Engineer'}** profile:\n\n- **Containerized REST microservice** (NodeJS + Express + Docker + TypeScript)\n- **Secure user token authentication module** (JWT + HTTPOnly Cookie controls)\n- **Graph dependency visuals tracker** (React + Framer Motion representation)\n\nWhich one would you like to build? I can provide the implementation steps!`;
+      } else if (lowercaseMsg.includes('tracker') || lowercaseMsg.includes('graph') || lowercaseMsg.includes('visual')) {
+        aiResponse = `To build the **Graph Dependency Visual Tracker**, you can follow these steps:
+\n1. **Data Structure:** Implement a Directed Graph (Adjacency List) in your code to represent skill relations (e.g. JavaScript points to React).
+\n2. **Path Traversal:** Use a Topological Sort (using DFS) or BFS traversal to determine the exact order a student should learn the skills.
+\n3. **Frontend Visuals:** Use a library like \`reactflow\` or raw SVG paths. Render skills as circular nodes and dependency paths as SVG curved lines connecting them.
+\n4. **Interactivity:** Use Framer Motion or Tailwind transitions to animate paths turning green when a prerequisite skill is marked as complete.
+\nWould you like a sample React component structure for this?`;
+      } else if (lowercaseMsg.includes('docker') || lowercaseMsg.includes('container')) {
+        aiResponse = `Here is how you can set up Docker containerization for your application:
+\n1. **Backend Dockerfile:** Create a \`Dockerfile\` in your backend directory:
+\`\`\`dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install --production
+COPY . .
+EXPOSE 5000
+CMD ["node", "server.js"]
+\`\`\`
+\n2. **Docker Compose:** Create a \`docker-compose.yml\` in the root to run MongoDB, Frontend, and Backend services simultaneously:
+\`\`\`yaml
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+\`\`\`
+\nWould you like me to draft the Frontend Nginx configuration next?`;
+    } else if (lowercaseMsg.includes('typescript') || lowercaseMsg.includes('ts')) {
+      aiResponse = `To migrate your codebase to **TypeScript**, follow this checklist:
+\n1. **Install TS Dependencies:** Run \`npm i -D typescript @types/react @types/react-dom @types/node @types/express\`
+\n2. **Configuration:** Generate a config file using \`npx tsc --init\` and set:
+   - \`"target": "ES2022"\`
+   - \`"jsx": "react-jsx"\` (for React codebases)
+\n3. **Type Declarations:** Create interfaces for your main data objects (e.g., \`interface ISkill { name: string; level: number; }\`) and update file extensions to \`.ts\` and \dots.
+\nWould you like a template config for your tsconfig.json?`;
+    } else if (lowercaseMsg.includes('aws') || lowercaseMsg.includes('cloud') || lowercaseMsg.includes('deploy')) {
+      aiResponse = `Here are the steps to deploy your application on **AWS EC2**:
+\n1. **Launch EC2 Instance:** Spin up an Ubuntu Server 22.04 LTS instance (t2.micro works for free tier).
+\n2. **Configure Security Group:** Open ports 22 (SSH), 80 (HTTP), and 443 (HTTPS).
+\n3. **Install Docker:** Run \`sudo apt update && sudo apt install docker.io docker-compose -y\`
+\n4. **Deploy Containers:** Clone your repo, create your production \`.env\` file, and spin up containers using \`docker compose up -d\`.
+\n5. **Reverse Proxy:** Install Nginx and configure it to proxy port 80 traffic to your application port (e.g. 5173/5000).
+\nWould you like the Nginx server block config sample?`;
       } else if (lowercaseMsg.includes('cert')) {
         aiResponse = `Valuable industry certifications for a **${user.targetCareer || 'Software Engineer'}** target:\n\n1. **AWS Cloud Practitioner Essentials** (Amazon web services)\n2. **MongoDB Certified Associate Developer** (Database mapping)\n3. **HashiCorp Certified Terraform Associate** (Infrastructure automation)`;
       } else {
