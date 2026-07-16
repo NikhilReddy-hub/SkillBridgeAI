@@ -60,7 +60,7 @@ export default function ForgotPassword() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="input pl-12"
+                  className="input input-with-icon"
                   placeholder="you@example.com"
                   required
                 />

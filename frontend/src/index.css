@@ -185,6 +185,11 @@ body {
   font-family: inherit;
 }
 
+.input-with-icon {
+  padding-left: 46px !important;
+}
+
+
 .input:focus {
   border-color: var(--primary-500);
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);

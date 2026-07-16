@@ -57,46 +57,46 @@ export default function Register() {
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">Full Name</label>
             <div className="relative">
-              <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[var(--text-muted)]" />
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="input pl-12"
-                placeholder="John Doe"
-                required
-              />
-            </div>
+            <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[var(--text-muted)]" />
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="input input-with-icon"
+              placeholder="John Doe"
+              required
+            />
           </div>
+        </div>
 
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">Email Address</label>
-            <div className="relative">
-              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[var(--text-muted)]" />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="input pl-12"
-                placeholder="you@example.com"
-                required
-              />
-            </div>
+        <div>
+          <label className="block text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">Email Address</label>
+          <div className="relative">
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[var(--text-muted)]" />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="input input-with-icon"
+              placeholder="you@example.com"
+              required
+            />
           </div>
+        </div>
 
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">Password</label>
-            <div className="relative">
-              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[var(--text-muted)]" />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="input pl-12"
-                placeholder="Minimum 8 characters"
-                required
-              />
-            </div>
+        <div>
+          <label className="block text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">Password</label>
+          <div className="relative">
+            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[var(--text-muted)]" />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="input input-with-icon"
+              placeholder="Minimum 8 characters"
+              required
+            />
+          </div>
           </div>
 
           <button type="submit" disabled={loading} className="btn btn-primary w-full py-3">
