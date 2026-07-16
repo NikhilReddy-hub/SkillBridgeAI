@@ -72,7 +72,7 @@ export default function ResetPassword() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="input pl-12"
+                  className="input input-with-icon"
                   placeholder="Minimum 8 characters"
                   required
                 />
@@ -86,7 +86,7 @@ export default function ResetPassword() {
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="input pl-12"
+                  className="input input-with-icon"
                   placeholder="Re-type password"
                   required
                 />
